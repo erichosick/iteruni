@@ -1,0 +1,150 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <title>WebM Project Test</title>
+
+    <script type="text/javascript" src="javascripts/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="javascripts/jquery-ui-1.8.1.custom.js"></script>
+    <script type="text/javascript">
+      // From http://jqueryui.com/docs/Developer_Guide
+      $.widget("ui.videoControl", {
+        /* Default */ options: { 
+          option1: "defaultValue"
+        },
+        _create: function() {
+          if ( !this._isVideoElement()) {
+            throw ("The videoControl player can only be used with an HTML5 video element (HTMLMediaElement).");
+          }
+
+          this.element.bind('play',
+            function() {
+               alert('play');
+            }
+          );
+          
+          this.element.bind('pause',
+            function() {
+              alert('pause');
+            }       
+          );
+          
+          this.element.bind('ended',
+            function() {
+              alert('ended');
+            }
+          );
+
+          this.element.bind('loadedmetadata',
+            function() {
+              alert(this.videoHeight);
+              alert(this.videoWidth);
+            }
+          );
+
+          // this._test();
+          // creation code for mywidget can use this.options
+          if (this.options.hidden) {
+            // and this.element
+            this.element.hide(); 
+          }
+        },
+
+        destroy: function() {
+          $.Widget.prototype.destroy.apply(this, arguments); // default destroy
+          // now do other stuff particular to this widget
+        },
+
+        _isVideoElement: function() {
+          return this.element[0] instanceof HTMLMediaElement;
+        },
+
+        play: function() {
+          return this;
+        },
+
+       });    
+
+      $(document).ready(function() {
+        $("video").videoControl();
+        $("video").videoControl('play',"Some Text");
+      });
+      
+    </script>
+  </head>
+  <body>
+    <video id="video" controls="true">
+      <source src="multimedia/dartmoor.ogv" type='video/ogg; codecs="theora, vorbis"' onerror='alert("Your browser does not support our video formats. We are trying to use HTML5 as our primary video source.");' />
+      <strong>Please visit our site using a browser that supports HTML5 video.</strong> 
+    </video>
+    
+    <h1 id="qunit-header">Video Link</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>    
+      
+  </body> 
+</html> 
+
+<!--
+
+
+ 
+        _test: function() {
+          var base = this;
+          test("Widget should be attached to an HTMLMediaElement", function() {
+            equal(base.element[0] instanceof HTMLMediaElement, true, "The videoControl widget works against HTML5 video tag element.")
+            }
+          );
+          test("Widget should have a play method", function(){
+              notEqual(base.play, null, "A play method was expected.");
+              base.play();
+            }
+          );
+          
+          
+          
+        },  
+
+    <link rel="stylesheet" href="http://github.com/jquery/qunit/raw/master/qunit/qunit.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="http://github.com/jquery/qunit/raw/master/qunit/qunit.js"></script>
+
+
+  preload="metadata"
+
+
+
+
+         _test: function() {
+          var base = this;
+          test("Widget should be attached to an HTMLMediaElement", function() {
+//            equal(this.element[0] instanceof HTMLMediaElement, true, "Expected html element to be a video tag.")
+            }
+          );
+        },        
+ 
+          _doSomething: function() {
+          // internal functions should be named with a leading underscore
+          // manipulate the widget
+        },
+  
+        value: function() {
+          // calculate some value and return it
+          return this._calculate();
+        },
+  
+        length: function() {
+          return this._someOtherValue();
+        },
+
+
+        try {
+        } catch(e) {
+          alert(e);
+        }
+
+
+       _videoCheck: function {
+        }  
+  
+   -->
+
