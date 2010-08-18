@@ -9,7 +9,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   
   config.gem 'haml'
-
+  
 
 
   # Settings in config/environments/* take precedence over those specified here.
